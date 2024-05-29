@@ -1,6 +1,6 @@
 class AssetService{
-  static const splash ="assets/image/splash.png";
-  static const logo ="assets/image/logo.svg";
+  static const splash ="assets/images/splash.png";
+  static const logo ="assets/images/logo.png";
   static const logoAnimation ="assets/animation/logo_animation.json";
   static const List<String> onBoard =[
    'assets/image/board1.png',

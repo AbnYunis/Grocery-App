@@ -1,4 +1,3 @@
-
 import 'package:grocery/core/utils/mange_routers/imports.dart';
 
 class LocaleManager {
@@ -26,8 +25,6 @@ class MyApp extends StatelessWidget {
       supportedLocales: const [
         Locale('en'),
         Locale('ar'),
-        Locale('ru'),
-        Locale('de'),
       ],
       localizationsDelegates: [
         AppLocalization.delegate,

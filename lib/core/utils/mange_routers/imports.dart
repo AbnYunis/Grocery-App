@@ -16,3 +16,5 @@ export 'package:geocoding/geocoding.dart';
 export 'package:geolocator/geolocator.dart';
 export 'package:flutter_localizations/flutter_localizations.dart';
 export 'package:grocery/core/utils/app_localization.dart';
+export '../../../../../core/utils/assets.dart';
+export 'package:grocery/core/styles/text_style.dart';

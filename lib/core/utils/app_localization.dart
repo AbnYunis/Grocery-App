@@ -17,7 +17,7 @@ class AppLocalization {
   Future loadJsonLanguage(String selectedLanguageCode) async {
     Map<String, dynamic> jsonString = json.decode(
       await rootBundle
-          .loadString('assets/languages/$selectedLanguageCode.json'),
+          .loadString('assets/lang/$selectedLanguageCode.json'),
     );
     _localizedStrings = jsonString.map(
       (key, value) {
@@ -34,7 +34,7 @@ class AppLocalization {
 class _AppLocalizationDelegate extends LocalizationsDelegate<AppLocalization> {
   @override
   bool isSupported(Locale locale) {
-    return ['en', 'ar', 'ru', 'de'].contains(locale.languageCode);
+    return ['en', 'ar'].contains(locale.languageCode);
   }
 
   @override
