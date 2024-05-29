@@ -1,6 +1,7 @@
 export 'package:go_router/go_router.dart';
 export 'package:flutter/material.dart';
 export 'dart:io';
+export 'package:grocery/core/utils/media_query.dart';
 export 'package:flutter/services.dart';
 export 'package:image_picker/image_picker.dart';
 export 'package:google_fonts/google_fonts.dart';
