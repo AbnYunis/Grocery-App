@@ -20,11 +20,11 @@ class CustomRadioTile extends StatefulWidget {
 
 class _State extends State<CustomRadioTile> {
   int _value2 = 1;
-  List<GroupModel> _langGroup = [
+  final List<GroupModel> _langGroup = [
     GroupModel(text: "English", index: 1, selected: true),
     GroupModel(text: "العربيه", index: 2, selected: false),
   ];
- List<GroupModel> _typeGroup = [
+ final List<GroupModel> _typeGroup = [
     GroupModel(text: "Customer", index: 1, selected: true),
     GroupModel(text: "Seller", index: 2, selected: false),
   ];
