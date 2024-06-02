@@ -2,7 +2,11 @@ import 'package:grocery/core/utils/function/animation_page.dart';
 import 'package:grocery/core/utils/mange_routers/imports.dart';
 
 abstract class Routers {
-  static const auth = '/auth';
+  static const lang = '/lang';
+  static const typeUser = '/typeUser';
+  static const signIn = '/signIn';
+  static const number = '/number';
+  static const verification = '/verification';
   static const bnb = '/bnb';
   static const category = '/category';
   static const auction = '/auction';
