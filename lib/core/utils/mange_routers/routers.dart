@@ -7,11 +7,8 @@ abstract class Routers {
   static const signIn = '/signIn';
   static const number = '/number';
   static const verification = '/verification';
-  static const bnb = '/bnb';
-  static const category = '/category';
-  static const auction = '/auction';
-  static const payment = '/payment';
-  static const addPost = '/addPost';
+  static const home = '/home';
+
   static GoRoute goRouteFade(Widget screen, String path) {
     return GoRoute(
       path: path,

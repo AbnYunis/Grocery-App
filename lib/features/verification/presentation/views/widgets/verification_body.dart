@@ -42,7 +42,9 @@ class VerificationBody extends StatelessWidget {
             SizedBoxApp(
               h: 100.h(context),
             ),
-            CustomCircleButton(onPressed: () {}),
+            CustomCircleButton(onPressed: () {
+           context.push(Routers.home);
+            }),
             SizedBoxApp(
               h: 50.h(context),
             ),

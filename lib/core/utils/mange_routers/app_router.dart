@@ -1,4 +1,5 @@
 import 'package:grocery/core/utils/mange_routers/imports.dart';
+import 'package:grocery/features/home/presentation/views/home_view.dart';
 import 'package:grocery/features/number/presentation/views/number_view.dart';
 import 'package:grocery/features/sign_in/presentation/views/sign_in_view.dart';
 import 'package:grocery/features/type_user/presentation/views/type_user_view.dart';
@@ -15,7 +16,7 @@ abstract class AppRouter {
        Routers.goRouteFade(const SignInView(), Routers.signIn),
        Routers.goRouteFade(const NumberView(), Routers.number),
        Routers.goRouteFade(const VerificationView(), Routers.verification),
-      // Routers.goRouteFade(const CustomBNB(), Routers.bnb),
+       Routers.goRouteFade(const HomeView(), Routers.home),
       // Routers.goRouteFade(const AuctionView(), Routers.auction),
       // Routers.goRouteFade(const PaymentView(), Routers.payment),
       // GoRoute(
