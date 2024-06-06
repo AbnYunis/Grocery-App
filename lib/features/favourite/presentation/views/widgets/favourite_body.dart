@@ -1,4 +1,5 @@
 import 'package:grocery/core/utils/mange_routers/imports.dart';
+import 'package:grocery/core/utils/widgets/custom_app_button.dart';
 import 'package:grocery/features/favourite/presentation/views/widgets/favourite_item.dart';
 
 class FavouriteBody extends StatelessWidget {
@@ -29,18 +30,7 @@ class FavouriteBody extends StatelessWidget {
               },
               itemCount: 4),
           const Spacer(),
-          MaterialButton(
-            onPressed: () {},
-            height: 55,
-            minWidth: 350.w(context),
-            color: const Color(0xff2B894E),
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20.w(context))),
-            child: Text(
-              'Add All To Cart',
-              style: TextStyles.style20_300(context, CustomColor.white),
-            ),
-          ),
+          CustomAppButton(text: 'Add All To Cart',onPress: (){},),
           SizedBoxApp(
             h: 100.h(context),
           )

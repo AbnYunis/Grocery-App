@@ -56,7 +56,8 @@ class CustomHomeItem extends StatelessWidget {
                         style: TextStyle(
                             fontSize: 10.w(context),
                             color: Colors.red,
-                            decoration: TextDecoration.underline),
+                            decoration: TextDecoration.underline,
+                            decorationColor: Colors.red),
                       ),
                       SizedBoxApp(
                         w: 25.w(context),
