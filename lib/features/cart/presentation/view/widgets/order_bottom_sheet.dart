@@ -1,5 +1,4 @@
 import 'package:grocery/core/utils/mange_routers/imports.dart';
-import 'package:grocery/core/utils/widgets/custom_app_button.dart';
 import 'package:grocery/features/cart/presentation/view/widgets/checkout_row.dart';
 
 class OrderBottomSheet extends StatelessWidget {
@@ -108,7 +107,7 @@ class OrderBottomSheet extends StatelessWidget {
             child: CustomAppButton(
               text: 'Order',
               onPress: () {
-
+                context.go(Routers.done);
               },
               width: 250.w(context),
             ),

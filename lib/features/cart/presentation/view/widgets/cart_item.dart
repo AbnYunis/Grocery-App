@@ -37,57 +37,63 @@ class CartItem extends StatelessWidget {
             ),
           ],
         ),
-        Row(
-          children: [
-            SizedBox(
-              width: 25.w(context),
-              height: 25.w(context),
-              child: FloatingActionButton(
-                onPressed: () {},
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(50.w(context)),
-                ),
-                mini: true,
-                backgroundColor: Colors.grey,
-                child: Icon(
-                  size: 20.w(context),
-                  Icons.remove,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 4.w(context)),
-              child: Text(
-                '1 KG',
-                style: TextStyles.style20_700(context, CustomColor.black),
-              ),
-            ),
-            SizedBox(
-              width: 25.w(context),
-              height: 25.w(context),
-              child: FloatingActionButton(
-                onPressed: () {},
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(50.w(context)),
-                ),
-                mini: true,
-                backgroundColor: Colors.green,
-                child: Icon(
-                  size: 20.w(context),
-                  Icons.add,
-                  color: Colors.white,
+        Expanded(
+          child: Row(
+            children: [
+              SizedBox(
+                width: 25.w(context),
+                height: 25.w(context),
+                child: FloatingActionButton(
+                  onPressed: () {},
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50.w(context)),
+                  ),
+                  mini: true,
+                  backgroundColor: Colors.grey,
+                  child: Icon(
+                    size: 20.w(context),
+                    Icons.remove,
+                    color: Colors.white,
+                  ),
                 ),
               ),
-            ),
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.delete_outline_sharp,
-                color: Colors.grey,
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 4.w(context)),
+                child: Text(
+                  '1 KG',
+                  style: TextStyles.style20_700(context, CustomColor.black),
+                ),
               ),
-            ),
-          ],
+              SizedBox(
+                width: 25.w(context),
+                height: 25.w(context),
+                child: FloatingActionButton(
+                  onPressed: () {},
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50.w(context)),
+                  ),
+                  mini: true,
+                  backgroundColor: Colors.green,
+                  child: Icon(
+                    size: 20.w(context),
+                    Icons.add,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              Spacer(),
+              GestureDetector(
+                onTap: () {
+
+                },
+                child: const Icon(
+                    Icons.delete_outline_sharp,
+                    color: Colors.grey,
+                  ),
+              ),
+
+            ],
+          ),
         )
       ],
     );

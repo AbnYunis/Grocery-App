@@ -9,55 +9,65 @@ class HomeBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 15.w(context)),
-        child: Column(
-          children: [
-            const HomeAppbar(),
-            const FreshVegetablesWidget(),
-            SizedBoxApp(
-              h: 15.h(context),
-            ),
-            const ViewAllWidget(
-              text: 'The most request',
-            ),
-
-            GridView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2, // Number of items per row
-                crossAxisSpacing: 5, // Spacing between columns
-                mainAxisSpacing: 0, // Spacing between rows
-                mainAxisExtent: 250.h(context)
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 15.w(context)),
+      child: Column(
+        children: [
+          const HomeAppbar(),
+          SizedBoxApp(
+            h: 15.h(context),
+          ),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  
+                  const FreshVegetablesWidget(),
+                  SizedBoxApp(
+                    h: 15.h(context),
+                  ),
+                  const ViewAllWidget(
+                    text: 'The most request',
+                  ),
+              
+                  GridView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2, // Number of items per row
+                      crossAxisSpacing: 5, // Spacing between columns
+                      mainAxisSpacing: 0, // Spacing between rows
+                      mainAxisExtent: 250.h(context)
+                    ),
+                    itemCount: 2,
+                    // Total number of items
+                    itemBuilder: (context, index) {
+                      return  CustomHomeItem(index: index,);
+                    },
+                  ),
+                  const ViewAllWidget(
+                    text: 'Recently arrived',
+                  ),
+                  GridView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2, // Number of items per row
+                        crossAxisSpacing: 5, // Spacing between columns
+                        mainAxisSpacing: 5, // Spacing between rows
+                        mainAxisExtent: 250.h(context)
+                    ),
+                    itemCount: 4,
+                    // Total number of items
+                    itemBuilder: (context, index) {
+                      return  CustomHomeItem(index: index+100,);
+                    },
+                  ),
+                ],
               ),
-              itemCount: 2,
-              // Total number of items
-              itemBuilder: (context, index) {
-                return const CustomHomeItem();
-              },
             ),
-            const ViewAllWidget(
-              text: 'Recently arrived',
-            ),
-            GridView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, // Number of items per row
-                  crossAxisSpacing: 5, // Spacing between columns
-                  mainAxisSpacing: 5, // Spacing between rows
-                  mainAxisExtent: 250.h(context)
-              ),
-              itemCount: 4,
-              // Total number of items
-              itemBuilder: (context, index) {
-                return const CustomHomeItem();
-              },
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

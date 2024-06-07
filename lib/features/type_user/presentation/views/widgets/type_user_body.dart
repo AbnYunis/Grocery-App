@@ -1,15 +1,12 @@
-import 'package:grocery/core/utils/function/custom_radio_tile.dart';
 import 'package:grocery/core/utils/mange_routers/imports.dart';
-import 'package:grocery/core/styles/text_style.dart';
 
-import '../../../../../core/utils/widgets/custom_circle_button.dart';
 
 class TypeUserBody extends StatelessWidget {
   const TypeUserBody({super.key});
 
   @override
   Widget build(BuildContext context) {
-    String _selectType = 'Customer';
+    //String _selectType = 'Customer';
     return Column(
       children: [
         Image.asset(AssetService.login),
@@ -23,7 +20,7 @@ class TypeUserBody extends StatelessWidget {
               ),
               Text(
                 'Select Type',
-                style: TextStyles.style26_bold(context, CustomColor.black),
+                style: TextStyles.style26Bold(context, CustomColor.black),
               ),
               SizedBoxApp(
                 h: 10.h(context),

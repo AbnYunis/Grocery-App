@@ -1,9 +1,10 @@
 import 'package:grocery/core/utils/mange_routers/imports.dart';
 import 'package:permission_handler/permission_handler.dart';
+
 Future<String> requestLocationPermissionAndRetrieveLocation() async {
   final status = await Permission.location.status;
 
-  if (status.isDenied || status.isPermanentlyDenied|| status.isRestricted) {
+  if (status.isDenied || status.isPermanentlyDenied || status.isRestricted) {
     // Request location permission
     final permissionStatus = await Permission.location.request();
 
@@ -36,11 +37,10 @@ Future<String> getLocationLink() async {
 
     // Construct the HTTPS link using the latitude and longitude
     //final link = 'https://maps.google.com/maps?q=$latitude,$longitude';
-    List<Placemark> placeMarks = await placemarkFromCoordinates(
-        position.latitude,
-        position.longitude
-    );
-    String location='${placeMarks[0].locality!} ${placeMarks[0].postalCode!} ${placeMarks[0].country!}';
+    List<Placemark> placeMarks =
+        await placemarkFromCoordinates(position.latitude, position.longitude);
+    String location =
+        '${placeMarks[0].locality!} ${placeMarks[0].postalCode!} ${placeMarks[0].country!}';
     return location;
   } catch (e) {
     // Handle any errors that may occur during location retrieval

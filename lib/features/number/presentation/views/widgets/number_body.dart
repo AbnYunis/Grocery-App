@@ -1,7 +1,7 @@
-import 'package:grocery/core/styles/text_style.dart';
+import 'dart:developer';
+
 import 'package:grocery/core/utils/mange_routers/imports.dart';
-import 'package:grocery/core/utils/widgets/custom_circle_button.dart';
-import 'package:intl_phone_field/intl_phone_field.dart';
+
 
 class NumberBody extends StatelessWidget {
   const NumberBody({super.key});
@@ -36,7 +36,7 @@ class NumberBody extends StatelessWidget {
               decoration: const InputDecoration(),
               initialCountryCode: 'EG',
               onChanged: (phone) {
-                print(phone.completeNumber);
+                log(phone.completeNumber);
               },
             ),
             SizedBoxApp(

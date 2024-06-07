@@ -2,7 +2,6 @@ import 'package:grocery/core/utils/mange_routers/imports.dart';
 import 'package:grocery/features/cart/presentation/view/widgets/cart_item.dart';
 import 'package:grocery/features/cart/presentation/view/widgets/order_bottom_sheet.dart';
 
-import '../../../../../core/utils/widgets/custom_app_button.dart';
 
 class CartBody extends StatelessWidget {
   const CartBody({super.key});
@@ -39,7 +38,7 @@ class CartBody extends StatelessWidget {
                   isScrollControlled: true,
                   context: context,
                   builder: (context) {
-                    return Wrap(children: [OrderBottomSheet()]);
+                    return const Wrap(children: [OrderBottomSheet()]);
                   });
             },
             width: 250.w(context),

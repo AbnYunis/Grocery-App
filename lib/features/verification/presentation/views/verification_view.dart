@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
 import 'package:grocery/core/utils/mange_routers/imports.dart';
-import 'package:grocery/features/verification/presentation/views/widgets/verification_body.dart';
 
 class VerificationView extends StatelessWidget {
   const VerificationView({super.key});

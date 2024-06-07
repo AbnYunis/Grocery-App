@@ -1,26 +1,24 @@
 import 'package:grocery/core/utils/mange_routers/imports.dart';
-import 'package:grocery/features/cart/presentation/view/widgets/cart_body.dart';
 
-class CartView extends StatelessWidget {
-  const CartView({super.key});
+class SelectLocationView extends StatelessWidget {
+  const SelectLocationView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return  SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          leading: GestureDetector(
-            onTap: () {
+          leading: IconButton(
+            onPressed: () {
               context.pop();
             },
-            child: Icon(
+            icon: Icon(
               Icons.arrow_back_ios,
               size: 20.w(context),
-              color: Colors.grey,
             ),
           ),
         ),
-        body: const CartBody(),
+        body:const SelectLocationBody(),
       ),
     );
   }

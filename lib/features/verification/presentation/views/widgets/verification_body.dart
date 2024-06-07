@@ -1,6 +1,5 @@
 import 'package:grocery/core/utils/mange_routers/imports.dart';
 
-import '../../../../../core/utils/widgets/custom_circle_button.dart';
 
 class VerificationBody extends StatelessWidget {
   const VerificationBody({super.key});
@@ -32,19 +31,17 @@ class VerificationBody extends StatelessWidget {
             SizedBoxApp(
               h: 5.h(context),
             ),
-            const TextField(
+             TextFormField(
               maxLength: 4,
               keyboardType: TextInputType.number,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: '----',
               ),
             ),
             SizedBoxApp(
               h: 100.h(context),
             ),
-            CustomCircleButton(onPressed: () {
-           context.push(Routers.home);
-            }),
+            CustomCircleButton(onPressed: () {context.push(Routers.selectLocation);}),
             SizedBoxApp(
               h: 50.h(context),
             ),

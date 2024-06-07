@@ -78,7 +78,7 @@ class TextStyles {
   static TextStyle style26_400(BuildContext context, CustomColor color) {
     return _almarai(context, 26, FontWeight.w400, color);
   }
-static TextStyle style26_bold(BuildContext context, CustomColor color) {
+static TextStyle style26Bold(BuildContext context, CustomColor color) {
     return _almarai(context, 26, FontWeight.bold, color);
   }
 

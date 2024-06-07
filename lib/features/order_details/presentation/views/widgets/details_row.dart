@@ -41,6 +41,7 @@ class DetailsRow extends StatelessWidget {
               width: 30.w(context),
               height: 30.w(context),
               child: FloatingActionButton(
+                heroTag: "01",
                 onPressed: () {},
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(50.w(context)),
@@ -64,6 +65,7 @@ class DetailsRow extends StatelessWidget {
               width: 30.w(context),
               height: 30.w(context),
               child: FloatingActionButton(
+                heroTag: "0",
                 onPressed: () {},
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(50.w(context)),

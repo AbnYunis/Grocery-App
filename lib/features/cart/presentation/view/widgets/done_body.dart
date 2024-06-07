@@ -12,7 +12,9 @@ class DoneBody extends StatelessWidget {
         children: [
           Image.asset(AssetService.done),
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              context.go(Routers.home);
+            },
             child: Text(
               'Back to home',
               style: TextStyles.style18_700(context, CustomColor.black),

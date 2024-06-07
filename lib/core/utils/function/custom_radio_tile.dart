@@ -1,3 +1,4 @@
+import '../../constant.dart';
 import '../mange_routers/imports.dart';
 
 class GroupModel {
@@ -30,36 +31,37 @@ class _State extends State<CustomRadioTile> {
   ];
 
   Widget makeRadioTiles() {
-    List<GroupModel> _group;
+    List<GroupModel> group;
    if(widget.text=='lan'){
-     _group=_langGroup;
+     group=_langGroup;
    }else{
-     _group=_typeGroup;
+     group=_typeGroup;
    }
     List<Widget> list = [];
 
-    for (int i = 0; i < _group.length; i++) {
+    for (int i = 0; i < group.length; i++) {
       list.add(RadioListTile(
-        value: _group[i].index,
+        value: group[i].index,
         groupValue: _value2,
-        selected: _group[i].selected,
+        selected: group[i].selected,
         onChanged: (val) {
           setState(() {
-            for (int i = 0; i < _group.length; i++) {
-              _group[i].selected = false;
+            for (int i = 0; i < group.length; i++) {
+              group[i].selected = false;
             }
             _value2 = val!;
-            _group[i].selected = true;
+            isSeller=val==2?true:false;
+            group[i].selected = true;
           });
         },
         activeColor: Colors.purple,
         controlAffinity: ListTileControlAffinity.trailing,
         title: Text(
-          ' ${_group[i].text}',
+          ' ${group[i].text}',
           style: TextStyle(
-              color: _group[i].selected ? Colors.black : Colors.grey,
+              color: group[i].selected ? Colors.black : Colors.grey,
               fontWeight:
-                  _group[i].selected ? FontWeight.bold : FontWeight.normal),
+                  group[i].selected ? FontWeight.bold : FontWeight.normal),
         ),
       ));
     }
@@ -72,12 +74,9 @@ class _State extends State<CustomRadioTile> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // padding: const EdgeInsets.all(32.0),
-      child: Center(
-        child: Column(
-          children: <Widget>[makeRadioTiles()],
-        ),
+    return Center(
+      child: Column(
+        children: <Widget>[makeRadioTiles()],
       ),
     );
   }

@@ -7,7 +7,11 @@ abstract class Routers {
   static const signIn = '/signIn';
   static const number = '/number';
   static const verification = '/verification';
+  static const selectLocation = '/selectLocation';
+  static const authCustomer = '/authCustomer';
+  static const authSeller = '/authSeller';
   static const home = '/home';
+  static const search = '/search';
   static const cart = '/cart';
   static const favourite = '/favourite';
   static const done = '/done';

@@ -1,6 +1,5 @@
+import 'dart:developer';
 import 'package:grocery/core/utils/mange_routers/imports.dart';
-import 'package:grocery/features/sign_in/presentation/views/widgets/sign_in_button.dart';
-import 'package:intl_phone_field/intl_phone_field.dart';
 
 class SignInBody extends StatelessWidget {
   const SignInBody({super.key});
@@ -22,7 +21,7 @@ class SignInBody extends StatelessWidget {
                 ),
                 Text(
                   'Get your groceries',
-                  style: TextStyles.style26_bold(context, CustomColor.black),
+                  style: TextStyles.style26Bold(context, CustomColor.black),
                 ),
                 SizedBoxApp(
                   h: 10.h(context),
@@ -36,7 +35,7 @@ class SignInBody extends StatelessWidget {
                     decoration: const InputDecoration(),
                     initialCountryCode: 'EG',
                     onChanged: (phone) {
-                      print(phone.completeNumber);
+                      log(phone.completeNumber);
                     },
                   ),
                 ),

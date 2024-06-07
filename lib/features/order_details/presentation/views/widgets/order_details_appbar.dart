@@ -9,7 +9,9 @@ class OrderDetailsAppbar extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            context.pop();
+          },
           icon: Icon(
             Icons.arrow_back_ios,
             size: 20.w(context),

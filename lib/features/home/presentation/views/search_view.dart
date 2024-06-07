@@ -1,13 +1,14 @@
 import 'package:grocery/core/utils/mange_routers/imports.dart';
 
-class TypeUserView extends StatelessWidget {
-  const TypeUserView({super.key});
+class SearchView extends StatelessWidget {
+  const SearchView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return const SafeArea(
       child: Scaffold(
-        body: TypeUserBody(),
+        body: SearchBody(),
+
       ),
     );
   }
