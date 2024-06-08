@@ -7,4 +7,5 @@ class AssetService {
   static const vegetables = "assets/images/vegetables.png";
   static const tomato = "assets/images/tomato.png";
   static const done = "assets/images/done.png";
+  static const finishAds = "assets/images/finish_ads.png";
 }

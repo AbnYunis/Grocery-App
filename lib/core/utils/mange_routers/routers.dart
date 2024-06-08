@@ -16,6 +16,8 @@ abstract class Routers {
   static const favourite = '/favourite';
   static const done = '/done';
   static const order = '/order';
+  static const profile = '/profile';
+  static const finishAds = '/finishAds';
 
 
   static GoRoute goRouteFade(Widget screen, String path) {

@@ -8,6 +8,7 @@ import 'package:grocery/features/favourite/presentation/views/favourite_view.dar
 import 'package:grocery/features/home/presentation/views/search_view.dart';
 import 'package:grocery/features/number/presentation/views/number_view.dart';
 import 'package:grocery/features/order_details/presentation/views/order_details_view.dart';
+import 'package:grocery/features/seller_profile/presentations/views/finish_add_ads_view.dart';
 import 'package:grocery/features/sign_in/presentation/views/sign_in_view.dart';
 import 'package:grocery/features/type_user/presentation/views/type_user_view.dart';
 import 'package:grocery/features/verification/presentation/views/verification_view.dart';
@@ -32,6 +33,7 @@ abstract class AppRouter {
       Routers.goRouteFade(const OrderDetailsView(), Routers.order),
       Routers.goRouteFade(const DoneView(), Routers.done),
       Routers.goRouteFade(const FavouriteView(), Routers.favourite),
+      Routers.goRouteFade(const FinishAddAdsView(), Routers.finishAds),
     ],
   );
 }

@@ -1,7 +1,11 @@
 
+import 'package:grocery/core/constant.dart';
 import 'package:grocery/core/utils/mange_routers/imports.dart';
+import 'package:grocery/features/customer_profile/presentations/views/customer_profile_view.dart';
 import 'package:grocery/features/favourite/presentation/views/favourite_view.dart';
 import 'package:grocery/features/home/presentation/views/home_view.dart';
+import 'package:grocery/features/seller_profile/presentations/views/seller_profile_view.dart';
+import 'package:grocery/features/setting/presentations/views/setting_view.dart';
 
 class CustomBNB extends StatefulWidget {
   const CustomBNB({super.key});
@@ -15,18 +19,18 @@ class _CustomBNBState extends State<CustomBNB> {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> screens = const[
-      HomeView(),
-      FavouriteView(),
-      FavouriteView(),
-      FavouriteView(),
+    List<Widget> screens = [
+      const HomeView(),
+      const SettingView(),
+      const FavouriteView(),
+      isSeller?const SellerProfileView():const CustomerProfileView(),
 
     ];
     List icons = [
       Icons.home_outlined,
+      Icons.settings_outlined,
       Icons.favorite_outline,
-      Icons.favorite_outline,
-      Icons.favorite_outline,
+      Icons.perm_identity_rounded,
     ];
     return SafeArea(
       child: Scaffold(
@@ -72,7 +76,7 @@ class _CustomBNBState extends State<CustomBNB> {
             )..insert(2, SizedBoxApp(w: 48.w(context))),
           ),
         ),
-        floatingActionButton: GestureDetector(
+        floatingActionButton: isSeller?const SizedBox.shrink():GestureDetector(
           onTap: () {
             context.push(Routers.cart);
           },

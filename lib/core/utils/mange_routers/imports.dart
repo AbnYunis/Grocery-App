@@ -38,3 +38,13 @@ export 'package:grocery/features/home/presentation/views/widgets/search_body.dar
 export 'package:grocery/core/utils/widgets/auth_text_field.dart';
 export 'package:grocery/features/auth_customer/presentations/views/widgets/birth_day.dart';
 export 'package:grocery/features/auth_seller/presentations/views/widgets/auth_seller_body.dart';
+export 'package:grocery/features/customer_profile/presentations/views/widgets/customer_profile_body.dart';
+export 'package:grocery/features/setting/presentations/views/widgets/setting_body.dart';
+export 'package:grocery/features/seller_profile/presentations/views/widgets/seller_profile_body.dart';
+export 'package:grocery/features/seller_profile/presentations/views/widgets/seller_text_field.dart';
+export 'package:dotted_border/dotted_border.dart';
+export 'package:grocery/core/utils/function/load_image.dart';
+export 'package:grocery/features/seller_profile/presentations/views/widgets/step1.dart';
+export 'package:grocery/features/seller_profile/presentations/views/widgets/step2.dart';
+export 'package:grocery/features/seller_profile/presentations/views/widgets/step3.dart';
+export 'package:grocery/features/seller_profile/presentations/views/widgets/step4.dart';
