@@ -2,8 +2,9 @@ import 'package:dropdown_search/dropdown_search.dart';
 import 'package:grocery/core/utils/mange_routers/imports.dart';
 
 class CountryState extends StatefulWidget {
-  const CountryState({super.key});
-
+  const CountryState({super.key, this.onChangedState, this.onChangedCity});
+  final void Function(String?)? onChangedState;
+  final void Function(String?)? onChangedCity;
   @override
   State<CountryState> createState() => _CountryStateState();
 }
@@ -39,6 +40,7 @@ class _CountryStateState extends State<CountryState> {
           onChanged: (String? newValue) {
             setState(() {
               selectedCountry = newValue;
+              widget.onChangedState?.call(newValue);
               selectedCity =
                   null; // Reset the selected city when the country changes
             });
@@ -68,6 +70,7 @@ class _CountryStateState extends State<CountryState> {
           selectedItem: selectedCity,
           onChanged: (String? newValue) {
             setState(() {
+              widget.onChangedCity?.call(newValue);
               selectedCity = newValue;
             });
           },

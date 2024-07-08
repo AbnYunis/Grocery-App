@@ -3,9 +3,9 @@ import 'package:grocery/core/utils/mange_routers/imports.dart';
 
 class LocationDetails extends StatefulWidget {
   const LocationDetails({
-    super.key,
+    super.key, this.onChanged,
   });
-
+final void Function(String?)? onChanged;
   @override
   State<LocationDetails> createState() => _LocationDetailsState();
 }

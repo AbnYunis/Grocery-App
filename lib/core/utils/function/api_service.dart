@@ -7,8 +7,10 @@ class ApiService {
 
   ApiService(this.dio);
 
+
   Future<Map<String, dynamic>> getData({required String endPoint}) async {
     dio.options.headers = {'token': SharedData.getToken()};
+
     final response = await dio.get('$baseUrl$endPoint');
 
     return {'code': response.statusCode, 'data': response.data};

@@ -1,4 +1,6 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grocery/core/utils/mange_routers/imports.dart';
+import 'package:grocery/features/auth_customer/presentations/manager/auth_customer_cubit.dart';
 
 class AuthCustomerBody extends StatefulWidget {
   const AuthCustomerBody({super.key});
@@ -9,6 +11,15 @@ class AuthCustomerBody extends StatefulWidget {
 
 class _AuthCustomerBodyState extends State<AuthCustomerBody> {
   bool isLogin = true;
+  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passController = TextEditingController();
+  TextEditingController rePassController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,23 +58,18 @@ class _AuthCustomerBodyState extends State<AuthCustomerBody> {
               h: 20.h(context),
             ),
             if (!isLogin) ...[
-              Row(
-                children: [
-                  const Expanded(
-                    child: AuthTextField(
-                      labelText: "FirstName",
-                    ),
-                  ),
-                  SizedBoxApp(
-                    w: 77.w(context),
-                  ),
-                  const Expanded(
-                    child: AuthTextField(
-                      labelText: "LastName",
-                    ),
-                  ),
-                ],
+              AuthTextField(
+                labelText: "FullName",
+                controller: nameController,
               ),
+              // SizedBoxApp(
+              //   w: 77.w(context),
+              // ),
+              // const Expanded(
+              //   child: AuthTextField(
+              //     labelText: "LastName",
+              //   ),
+              // ),
               SizedBoxApp(
                 h: 30.h(context),
               ),
@@ -72,26 +78,29 @@ class _AuthCustomerBodyState extends State<AuthCustomerBody> {
               //   h: 30.h(context),
               // ),
             ],
-            const AuthTextField(
+            AuthTextField(
               labelText: "Email",
               hintText: "JohnHenry@gmail.com",
+              controller: emailController,
             ),
             SizedBoxApp(
               h: 30.h(context),
             ),
-            const AuthTextField(
+            AuthTextField(
               labelText: "Password",
               hintText: "********",
               isPassword: true,
+              controller: passController,
             ),
             if (!isLogin) ...[
               SizedBoxApp(
                 h: 30.h(context),
               ),
-              const AuthTextField(
+              AuthTextField(
                 labelText: " Confirm Password",
                 hintText: "********",
                 isPassword: true,
+                controller: rePassController,
               ),
               SizedBoxApp(
                 h: 30.h(context),
@@ -105,10 +114,25 @@ class _AuthCustomerBodyState extends State<AuthCustomerBody> {
               h: 64.h(context),
             ),
             Center(
-                child: CustomAppButton(
-              text: isLogin?"Login":"Sign Up",
-              onPress: () {
-                context.push(Routers.home);
+                child: BlocConsumer<AuthCustomerCubit, AuthCustomerState>(
+              listener: (context, state) {
+                if (state is AuthCustomerSuccess) {
+                  context.push(Routers.home);
+                }
+              },
+              builder: (context, state) {
+                return CustomAppButton(
+                  text: isLogin ? "Login" : "Sign Up",
+                  onPress: () {
+                    !isLogin
+                        ? context.read<AuthCustomerCubit>().register(
+                            nameController.text,
+                            emailController.text,
+                            passController.text,
+                            rePassController.text)
+                        :context.read<AuthCustomerCubit>().login(emailController.text, passController.text);
+                  },
+                );
               },
             )),
             SizedBoxApp(
