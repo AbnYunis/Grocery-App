@@ -1,4 +1,9 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:grocery/core/utils/function/api_service.dart';
 import 'package:grocery/core/utils/mange_routers/imports.dart';
+import 'package:grocery/features/customer_profile/presentations/manager/log_out_cubit/logout_cubit.dart';
+
+import '../../../../../core/utils/function/service_locator.dart';
 
 class CustomerProfileBody extends StatelessWidget {
   const CustomerProfileBody({super.key});
@@ -6,14 +11,14 @@ class CustomerProfileBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<String> titles = [
-      'Orders',
+      'About',
       'My Details',
       'Delivery Address',
       'Payment Methods',
       "Promo Cord"
     ];
     List<IconData> widgets = [
-       Icons.shopping_bag_outlined,
+      Icons.shopping_bag_outlined,
       Icons.account_box_outlined,
       Icons.location_on_outlined,
       Icons.payment_outlined,
@@ -51,7 +56,7 @@ class CustomerProfileBody extends StatelessWidget {
                           child: Icon(
                             Icons.edit_outlined,
                             size: 20.w(context),
-                            color: Color(0xFF216335),
+                            color: const Color(0xFF216335),
                           ),
                         ),
                       ],
@@ -74,17 +79,20 @@ class CustomerProfileBody extends StatelessWidget {
           ),
           const Divider(),
           ListView.separated(
-            shrinkWrap: true,
+              shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
                 return ListTile(
+                  onTap: () {
+                    index == 0 ? GoRouter.of(context).push(Routers.about) : '';
+                  },
                   contentPadding: EdgeInsets.symmetric(
                       horizontal: 30.w(context), vertical: 0),
                   title: Text(
                     titles[index],
                     style: TextStyles.style18_700(context, CustomColor.black),
                   ),
-                  trailing: Icon(Icons.arrow_forward_ios),
+                  trailing: const Icon(Icons.arrow_forward_ios),
                   leading: Icon(widgets[index]),
                 );
               },
@@ -92,14 +100,33 @@ class CustomerProfileBody extends StatelessWidget {
                     height: 2.h(context),
                   ),
               itemCount: 5),
-          Divider(),
-          Spacer(),
-          CustomAppButton(
-            text: 'Logout',
-            onPress: () {},
+          const Divider(),
+          const Spacer(),
+          BlocProvider(
+            create: (context) => LogoutCubit(sl<ApiService>()),
+            child: BlocConsumer<LogoutCubit, LogoutState>(
+              listener: (context, state) {
+                print(state);
+                // TODO: implement listener
+              },
+              builder: (context, state) {
 
+
+                if(state is LogoutLoading){
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }else{
+                  return CustomAppButton(
+                    text: 'Logout',
+                    onPress: () {
+                      BlocProvider.of<LogoutCubit>(context).logOut();
+                    },
+                  );
+                }
+              },
+            ),
           ),
-
         ],
       ),
     );
