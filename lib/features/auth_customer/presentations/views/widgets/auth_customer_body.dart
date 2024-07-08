@@ -67,10 +67,10 @@ class _AuthCustomerBodyState extends State<AuthCustomerBody> {
               SizedBoxApp(
                 h: 30.h(context),
               ),
-              const BirthDay(),
-              SizedBoxApp(
-                h: 30.h(context),
-              ),
+              //const BirthDay(),
+              // SizedBoxApp(
+              //   h: 30.h(context),
+              // ),
             ],
             const AuthTextField(
               labelText: "Email",
@@ -89,8 +89,9 @@ class _AuthCustomerBodyState extends State<AuthCustomerBody> {
                 h: 30.h(context),
               ),
               const AuthTextField(
-                labelText: "User ID",
+                labelText: " Confirm Password",
                 hintText: "********",
+                isPassword: true,
               ),
               SizedBoxApp(
                 h: 30.h(context),

@@ -50,6 +50,10 @@ dependencies:
   dropdown_search: ^5.0.6
   easy_stepper: ^0.8.5
   dotted_border: ^2.1.0
+  dartz: ^0.10.1
+  dio: ^5.5.0+1
+  shared_preferences: ^2.2.3
+  get_it: ^7.7.0
 
 dev_dependencies:
   flutter_test:

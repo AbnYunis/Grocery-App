@@ -1,4 +1,8 @@
+import 'package:get_it/get_it.dart';
+import 'package:grocery/core/utils/function/service_locator.dart';
 import 'package:grocery/core/utils/mange_routers/imports.dart';
+
+import 'core/utils/function/shared_data.dart';
 
 // class LocaleManager {
 //   static Locale currentLocale = const Locale('en');
@@ -10,7 +14,10 @@ import 'package:grocery/core/utils/mange_routers/imports.dart';
 //   }
 // }
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await SharedData.init();
+  ServiceLocator().init();
   runApp(const MyApp());
 }
 
@@ -41,4 +48,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-

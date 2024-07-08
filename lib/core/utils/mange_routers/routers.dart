@@ -19,7 +19,6 @@ abstract class Routers {
   static const profile = '/profile';
   static const finishAds = '/finishAds';
 
-
   static GoRoute goRouteFade(Widget screen, String path) {
     return GoRoute(
       path: path,

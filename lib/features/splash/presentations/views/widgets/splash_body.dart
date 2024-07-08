@@ -104,7 +104,7 @@ class _SplashBodyState extends State<SplashBody>
     Future.delayed(
       const Duration(seconds: 3),
       () {
-        context.go(Routers.lang);
+        context.go(Routers.selectLocation);
       },
     );
   }

@@ -47,7 +47,7 @@ class SelectLocationBody extends StatelessWidget {
                   ),
                   CustomAppButton(
                     onPress: () {
-                      context.push(isSeller?Routers.authSeller:Routers.authCustomer);
+                      context.push(Routers.authCustomer);
                     },
                     text: 'Done',
                     width: 266.w(context),
