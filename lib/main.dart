@@ -1,4 +1,3 @@
-import 'package:get_it/get_it.dart';
 import 'package:grocery/core/utils/function/service_locator.dart';
 import 'package:grocery/core/utils/mange_routers/imports.dart';
 
