@@ -15,7 +15,6 @@ class OrderDetailsBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     int? quantity = 1;
-    print(quantity);
     final size = MediaQuery.of(context).size;
     final extraData = GoRouterState.of(context).extra as Map<String, dynamic>?;
     return SingleChildScrollView(
@@ -105,8 +104,10 @@ class OrderDetailsBody extends StatelessWidget {
                       child: BlocProvider(
                         create: (context) =>
                             AddProductToCartCubit(sl<HomeRepoImplement>()),
-                        child: BlocBuilder<AddProductToCartCubit,
+                        child: BlocConsumer<AddProductToCartCubit,
                             AddProductToCartState>(
+                          listener: (context, state) {
+                          },
                           builder: (context, st) {
                             if (st is AddProductToCartLoading) {
                               return const Center(
@@ -127,7 +128,7 @@ class OrderDetailsBody extends StatelessWidget {
                           },
                         ),
                       ),
-                    )
+                    ),
                   ],
                 );
               } else {

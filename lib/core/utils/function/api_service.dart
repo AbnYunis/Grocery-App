@@ -24,10 +24,6 @@ class ApiService {
 
   Future<Map<String, dynamic>> postData(
       {required String endPoint, required Object? data}) async {
-    dio.options.headers = {
-      'Authorization':
-          'Bearer 18|kcM5ByXc2NkmtbH5qPbTSdRFuOBYKU85kP63rg2af44d1ca4',
-    };
     final response = await dio.post('$baseUrl$endPoint', data: data);
     return {'code': response.statusCode, 'data': response.data};
   }
