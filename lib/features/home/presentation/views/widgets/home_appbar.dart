@@ -7,7 +7,7 @@ class HomeAppbar extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-         IconButton(onPressed: (){context.push(Routers.search);}, icon: const Icon(Icons.search),),
+         //IconButton(onPressed: (){context.push(Routers.search);}, icon: const Icon(Icons.search),),
         const Text('Home'),
         IconButton(onPressed: (){}, icon: const Icon(Icons.menu_sharp))
       ],

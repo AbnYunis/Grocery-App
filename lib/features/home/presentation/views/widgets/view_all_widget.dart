@@ -14,22 +14,22 @@ class ViewAllWidget extends StatelessWidget {
           text,
           style: TextStyles.style18_700(context, CustomColor.black),
         ),
-        TextButton(
-          onPressed: () {},
-          child: Row(
-            children: [
-              Text(
-                'View all ',
-                style: TextStyles.style15_400(context, CustomColor.green),
-              ),
-              Icon(
-                Icons.arrow_forward_ios,
-                color: Color(0xFF2B894E),
-                size: 15.w(context),
-              ),
-            ],
-          ),
-        ),
+        // TextButton(
+        //   onPressed: () {},
+        //   child: Row(
+        //     children: [
+        //       Text(
+        //         'View all ',
+        //         style: TextStyles.style15_400(context, CustomColor.green),
+        //       ),
+        //       Icon(
+        //         Icons.arrow_forward_ios,
+        //         color: Color(0xFF2B894E),
+        //         size: 15.w(context),
+        //       ),
+        //     ],
+        //   ),
+        // ),
       ],
     );
   }
