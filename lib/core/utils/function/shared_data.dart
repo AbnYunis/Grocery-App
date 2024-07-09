@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:grocery/features/home/data/models/products_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedData {
@@ -81,5 +84,92 @@ class SharedData {
 
   static Future<bool>? removeData(String key) {
     return prefs?.remove(key);
+  }
+
+  static Future<void> saveAddToCartData(Product product) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    List<String> productListJson = prefs.getStringList('productList') ?? [];
+    // Decode JSON strings to Product objects
+    List<Product> productList = productListJson.map((item) => Product.fromJson(jsonDecode(item))).toList();
+
+    // Check if the product with the same ID already exists
+    bool productExists = productList.any((existingProduct) => existingProduct.id == product.id);
+
+    if (!productExists) {
+      // Add new product to the list
+      productList.add(product);
+
+      // Convert Product objects to JSON strings
+      productListJson = productList.map((product) => jsonEncode(product.toJson())).toList();
+      // Save updated product list to SharedPreferences
+      await prefs.setStringList('productList', productListJson);
+    }
+  }
+  static Future<List<Product>?> getAddToCartData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    // Load existing product list from SharedPreferences
+    List<String>? productListJson = prefs.getStringList('productList');
+
+    if (productListJson != null) {
+      // Decode JSON strings to Product objects
+      List<Product> productList = productListJson.map((item) => Product.fromJson(jsonDecode(item))).toList();
+      return productList;
+    }
+
+    // Return an empty list if no data is found
+    return [];
+  }
+
+  static Future<void> saveFaveData(Product product) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    List<String> productListJson = prefs.getStringList('productList') ?? [];
+    // Decode JSON strings to Product objects
+    List<Product> productList = productListJson.map((item) => Product.fromJson(jsonDecode(item))).toList();
+
+    // Check if the product with the same ID already exists
+    bool productExists = productList.any((existingProduct) => existingProduct.id == product.id);
+
+    if (!productExists) {
+      // Add new product to the list
+      productList.add(product);
+
+      // Convert Product objects to JSON strings
+      productListJson = productList.map((product) => jsonEncode(product.toJson())).toList();
+      // Save updated product list to SharedPreferences
+      await prefs.setStringList('productList', productListJson);
+    }
+  }
+  static Future<List<Product>?> getFaveData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    // Load existing product list from SharedPreferences
+    List<String>? productListJson = prefs.getStringList('productList');
+
+    if (productListJson != null) {
+      // Decode JSON strings to Product objects
+      List<Product> productList = productListJson.map((item) => Product.fromJson(jsonDecode(item))).toList();
+      return productList;
+    }
+
+    // Return an empty list if no data is found
+    return [];
+  }
+  static Future<void> removeFaveData(String productId) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    List<String> productListJson = prefs.getStringList('productList') ?? [];
+    // Decode JSON strings to Product objects
+    List<Product> productList = productListJson.map((item) => Product.fromJson(jsonDecode(item))).toList();
+
+    // Remove the product with the specified ID
+    productList.removeWhere((product) => product.id.toString() == productId);
+
+    // Convert Product objects to JSON strings
+    productListJson = productList.map((product) => jsonEncode(product.toJson())).toList();
+    // Save updated product list to SharedPreferences
+    await prefs.setStringList('productList', productListJson);
   }
 }

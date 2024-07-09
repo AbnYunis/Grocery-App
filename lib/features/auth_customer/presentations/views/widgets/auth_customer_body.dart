@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:grocery/core/utils/function/shared_data.dart';
 import 'package:grocery/core/utils/mange_routers/imports.dart';
 import 'package:grocery/features/auth_customer/presentations/manager/auth_customer_cubit.dart';
 
@@ -117,6 +118,8 @@ class _AuthCustomerBodyState extends State<AuthCustomerBody> {
                 child: BlocConsumer<AuthCustomerCubit, AuthCustomerState>(
               listener: (context, state) {
                 if (state is AuthCustomerSuccess) {
+                  SharedData.saveUserName(userName: nameController.text);
+                  SharedData.saveUserEmail(userEmail: emailController.text);
                   context.push(Routers.home);
                 }
               },

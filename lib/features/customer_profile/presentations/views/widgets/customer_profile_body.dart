@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grocery/core/utils/function/api_service.dart';
+import 'package:grocery/core/utils/function/shared_data.dart';
 import 'package:grocery/core/utils/mange_routers/imports.dart';
 import 'package:grocery/features/customer_profile/presentations/manager/log_out_cubit/logout_cubit.dart';
 
@@ -36,7 +37,7 @@ class CustomerProfileBody extends StatelessWidget {
                 CircleAvatar(
                   radius: 32.w(context),
                   backgroundImage: const NetworkImage(
-                      "https://s3-alpha-sig.figma.com/img/c7e7/1dd7/c0c82e0b452a92db78557eff4d951d59?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=PjeZna9nV-EB4DNUSqv3QL4F~6BZEAEvF6gJ4PyZkbTTdARE8NgMvghfr46olRcVYw-0BUt6AvzFcnDuKeLPQg5t55tikiWzoP~HkizvPD9iVjHZYfR3pWmP7QPyPz3Oa4BUy5zgXGceq6bryMhdi8hGXTbMj0NcFI3gWtD7GfW2ta2mqtBtzUJ~lyB6Uz8fGwBimqT7dxYdHQYyuSQ-7whRWXP9kWuO5NPDRWiEQ3QTnxUngKc6z~FhmPS1vGkdvU2uU2h7pjGVPqZ-4OE~M0I5BsEmFfDA1D8UVTcuAhNTXefmOQmM1tKB9th4jtFY4zpP~tr0TVdTMNr3GcTfWA__"),
+    "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80"),
                 ),
                 SizedBoxApp(
                   w: 15.w(context),
@@ -47,7 +48,7 @@ class CustomerProfileBody extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          'Ahmed mohamed',
+                          SharedData.getUserName()!,
                           style: TextStyles.style20_700(
                               context, CustomColor.black),
                         ),
@@ -65,7 +66,7 @@ class CustomerProfileBody extends StatelessWidget {
                       h: 5.h(context),
                     ),
                     Text(
-                      'Ahmed97@gmail.com',
+                      SharedData.getUserEmail()!,
                       style: TextStyles.style16_700(
                           context, CustomColor.lightGrey),
                     ),
@@ -120,7 +121,8 @@ class CustomerProfileBody extends StatelessWidget {
                   return CustomAppButton(
                     text: 'Logout',
                     onPress: () {
-                      BlocProvider.of<LogoutCubit>(context).logOut();
+                      context.go(Routers.authCustomer);
+                     // BlocProvider.of<LogoutCubit>(context).logOut();
                     },
                   );
                 }

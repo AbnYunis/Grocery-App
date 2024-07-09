@@ -51,6 +51,7 @@ class Product {
   final String type;
   final DateTime createdAt;
   final DateTime updatedAt;
+  int quantity;
 
   Product({
     required this.id,
@@ -62,6 +63,7 @@ class Product {
     required this.type,
     required this.createdAt,
     required this.updatedAt,
+    this.quantity = 1, // Default quantity is set to 0
   });
 
   factory Product.fromJson(Map<String, dynamic> json) {
@@ -75,6 +77,7 @@ class Product {
       type: json['type'],
       createdAt: DateTime.parse(json['created_at']),
       updatedAt: DateTime.parse(json['updated_at']),
+      quantity: json['quantity'] ?? 1, // Handle the case where quantity might be missing
     );
   }
 
@@ -89,6 +92,12 @@ class Product {
       'type': type,
       'created_at': createdAt.toIso8601String(),
       'updated_at': updatedAt.toIso8601String(),
+      'quantity': quantity,
     };
+  }
+
+  // Method to edit quantity
+  void editQuantity(int newQuantity) {
+    quantity = newQuantity;
   }
 }

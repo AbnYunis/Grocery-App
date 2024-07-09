@@ -2,8 +2,8 @@ import 'package:grocery/core/utils/mange_routers/imports.dart';
 import 'package:grocery/features/cart/presentation/view/widgets/checkout_row.dart';
 
 class OrderBottomSheet extends StatelessWidget {
-  const OrderBottomSheet({super.key});
-
+  const OrderBottomSheet({super.key, required this.function});
+final Future<void>   Function() function;
   @override
   Widget build(BuildContext context) {
     List<Widget> items = [
@@ -107,6 +107,7 @@ class OrderBottomSheet extends StatelessWidget {
             child: CustomAppButton(
               text: 'Order',
               onPress: () {
+                function();
                 context.go(Routers.done);
               },
               width: 250.w(context),

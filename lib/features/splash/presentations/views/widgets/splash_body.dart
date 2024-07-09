@@ -1,3 +1,4 @@
+import 'package:grocery/core/utils/function/shared_data.dart';
 import 'package:grocery/core/utils/mange_routers/imports.dart';
 
 class SplashBody extends StatefulWidget {
@@ -104,7 +105,7 @@ class _SplashBodyState extends State<SplashBody>
     Future.delayed(
       const Duration(seconds: 3),
       () {
-        context.go(Routers.selectLocation);
+        SharedData.getUserName()==null?context.go(Routers.lang):context.go(Routers.home);
       },
     );
   }

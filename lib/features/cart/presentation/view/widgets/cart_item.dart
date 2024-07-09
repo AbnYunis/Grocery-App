@@ -1,7 +1,58 @@
+import 'package:flutter/material.dart';
 import 'package:grocery/core/utils/mange_routers/imports.dart';
+import 'package:grocery/features/home/data/models/products_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class CartItem extends StatelessWidget {
-  const CartItem({super.key});
+class CartItem extends StatefulWidget {
+  const CartItem({Key? key, required this.product, required this.onDelete}) : super(key: key);
+  final Product product;
+  final VoidCallback onDelete;
+
+  @override
+  _CartItemState createState() => _CartItemState();
+}
+
+class _CartItemState extends State<CartItem> {
+  Future<void> _incrementQuantity() async {
+    setState(() {
+      widget.product.quantity++;
+    });
+    await _updateCart();
+  }
+
+  Future<void> _decrementQuantity() async {
+    if (widget.product.quantity > 1) {
+      setState(() {
+        widget.product.quantity--;
+      });
+      await _updateCart();
+    }
+  }
+
+  Future<void> _deleteProduct() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    List<String> productListJson = prefs.getStringList('productList') ?? [];
+    List<Product> productList = productListJson.map((item) => Product.fromJson(jsonDecode(item))).toList();
+    productList.removeWhere((p) => p.id == widget.product.id);
+    productListJson = productList.map((product) => jsonEncode(product.toJson())).toList();
+    await prefs.setStringList('productList', productListJson);
+    widget.onDelete();
+  }
+
+  Future<void> _updateCart() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    List<String> productListJson = prefs.getStringList('productList') ?? [];
+    List<Product> productList = productListJson.map((item) => Product.fromJson(jsonDecode(item))).toList();
+    int index = productList.indexWhere((p) => p.id == widget.product.id);
+    if (index != -1) {
+      productList[index] = widget.product;
+    }
+    productListJson = productList.map((product) => jsonEncode(product.toJson())).toList();
+    await prefs.setStringList('productList', productListJson);
+    setState(() {
+      // Update the UI to reflect the quantity change
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -10,9 +61,20 @@ class CartItem extends StatelessWidget {
       children: [
         Row(
           children: [
-            Image.asset(
-              AssetService.tomato,
-              scale: 3,
+            CachedNetworkImage(
+              placeholder: (context, url) => Shimmer.fromColors(
+                baseColor: Colors.white,
+                highlightColor: Colors.black54,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                ),
+              ),
+              fit: BoxFit.fill,
+              imageUrl: widget.product.productImage,
+              errorWidget: (context, url, error) => const Center(child: Icon(Icons.error)),
             ),
             SizedBoxApp(
               w: 15.w(context),
@@ -23,16 +85,16 @@ class CartItem extends StatelessWidget {
                 SizedBox(
                   width: 100.w(context),
                   child: Text(
-                    'Tomato',
+                    widget.product.name,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyles.style16_700(context, CustomColor.black),
                   ),
                 ),
                 Text(
-                  '30 EGP',
+                  widget.product.price.toString(),
                   style: TextStyles.style16_700(context, CustomColor.lightGrey),
-                )
+                ),
               ],
             ),
           ],
@@ -44,7 +106,7 @@ class CartItem extends StatelessWidget {
                 width: 25.w(context),
                 height: 25.w(context),
                 child: FloatingActionButton(
-                  onPressed: () {},
+                  onPressed: _decrementQuantity,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50.w(context)),
                   ),
@@ -60,7 +122,7 @@ class CartItem extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 4.w(context)),
                 child: Text(
-                  '1 KG',
+                  widget.product.quantity.toString(),
                   style: TextStyles.style20_700(context, CustomColor.black),
                 ),
               ),
@@ -68,7 +130,7 @@ class CartItem extends StatelessWidget {
                 width: 25.w(context),
                 height: 25.w(context),
                 child: FloatingActionButton(
-                  onPressed: () {},
+                  onPressed: _incrementQuantity,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50.w(context)),
                   ),
@@ -83,18 +145,15 @@ class CartItem extends StatelessWidget {
               ),
               Spacer(),
               GestureDetector(
-                onTap: () {
-
-                },
+                onTap: _deleteProduct,
                 child: const Icon(
-                    Icons.delete_outline_sharp,
-                    color: Colors.grey,
-                  ),
+                  Icons.delete_outline_sharp,
+                  color: Colors.grey,
+                ),
               ),
-
             ],
           ),
-        )
+        ),
       ],
     );
   }

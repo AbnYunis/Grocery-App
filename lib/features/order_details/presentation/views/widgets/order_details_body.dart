@@ -1,5 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:grocery/core/utils/function/shared_data.dart';
 import 'package:grocery/core/utils/mange_routers/imports.dart';
+import 'package:grocery/features/home/data/models/products_model.dart';
 import 'package:grocery/features/home/data/repos/home_repo_implement.dart';
 import 'package:grocery/features/home/presentation/managers/add_to_cart/add_product_to_cart_cubit.dart';
 import 'package:grocery/features/home/presentation/managers/get_product/get_product_cubit.dart';
@@ -9,9 +11,15 @@ import 'package:grocery/features/order_details/presentation/views/widgets/review
 
 import '../../../../../core/utils/function/service_locator.dart';
 
-class OrderDetailsBody extends StatelessWidget {
+class OrderDetailsBody extends StatefulWidget {
   const OrderDetailsBody({super.key});
 
+  @override
+  State<OrderDetailsBody> createState() => _OrderDetailsBodyState();
+}
+
+class _OrderDetailsBodyState extends State<OrderDetailsBody> {
+  bool isFavorite = false;
   @override
   Widget build(BuildContext context) {
     int? quantity = 1;
@@ -25,7 +33,6 @@ class OrderDetailsBody extends StatelessWidget {
           padding: EdgeInsets.all(15.w(context)),
           child: BlocConsumer<GetProductCubit, GetProductState>(
             listener: (context, state) {
-              // TODO: implement listener
             },
             builder: (context, state) {
               if (state is GetProductFailure) {
@@ -69,10 +76,16 @@ class OrderDetailsBody extends StatelessWidget {
                           w: 15.w(context),
                         ),
                         IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            isFavorite?SharedData.removeFaveData(state.product.id.toString()):SharedData.saveFaveData(state.product);
+                            setState(() {
+                              isFavorite = !isFavorite;
+                            });
+                          },
                           icon: Icon(
-                            Icons.favorite_border,
+                            isFavorite ? Icons.favorite : Icons.favorite_border,
                             size: 25.w(context),
+                            color: Colors.red,
                           ),
                         ),
                       ],
@@ -80,7 +93,7 @@ class OrderDetailsBody extends StatelessWidget {
                     DetailsRow(
                       product: state.product,
                       getKgs: (q) {
-                        quantity = q;
+                        state.product.quantity = q!;
                       },
                     ),
                     const ReviewRaw(),
@@ -101,32 +114,12 @@ class OrderDetailsBody extends StatelessWidget {
                       h: 15.h(context),
                     ),
                     Center(
-                      child: BlocProvider(
-                        create: (context) =>
-                            AddProductToCartCubit(sl<HomeRepoImplement>()),
-                        child: BlocConsumer<AddProductToCartCubit,
-                            AddProductToCartState>(
-                          listener: (context, state) {
-                          },
-                          builder: (context, st) {
-                            if (st is AddProductToCartLoading) {
-                              return const Center(
-                                child: CircularProgressIndicator(),
-                              );
-                            } else {
-                              return CustomAppButton(
-                                text: 'Add to cart',
-                                onPress: () {
-                                  BlocProvider.of<AddProductToCartCubit>(
-                                          context)
-                                      .addItemToCart(
-                                          state.product.id, quantity!);
-                                },
-                                width: 250.w(context),
-                              );
-                            }
-                          },
-                        ),
+                      child: CustomAppButton(
+                        text: 'Add to cart',
+                        onPress: () async{
+                          SharedData.saveAddToCartData(state.product);
+                        },
+                        width: 250.w(context),
                       ),
                     ),
                   ],
